@@ -49,39 +49,85 @@ function sendchat(str)
         xmlhttp.onreadystatechange = function()
         {
 
-
+		var text ="";
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
                 {
-                  //document.getElementById("chat").innerHTML = xmlhttp.responseText;
-             	  xmlDoc = xhttp.responsiveXML;
-		 text = "";
-	         ayy = xmlDoc.getElementsByTagName("questionType");
-		 l = xmlDoc.getElementsByTagName("value");
-		 mao = xmlDoc.getElementsByTagName("answer");
-		 bant = xmlDoc.getElementsByTagName("question");
+                  text = xmlhttp.responseText;
+		  var responseLength = text.length;
+             	  
 		}
-
-		for(i= 0; i<bant.length;i++)
+		alert("TEXT: " + text);
+	var foundQuestion = false;
+	var foundQuestionType=false;
+	var qloc = 0;
+	var fqloc = 0;
+	var endofq = 0;
+	var endoffq = 0;
+	var q = "";
+	var qt = "";
+	 
+		//find <question>
+		for(var k=0;k<responseLength;k++)
 		{
-		 //question
-		 document.getElementById("chat").innerHTML = bant[i].childNode[0].nodeValue;
+		  var test = text.substr(k,10); 
+		 // console.log(test);
+		  if(test == "<question>")
+		  {
+		    foundQuestion = true;
+		    qloc = k+10;
+		    alert("found Question");
+		    alert(test);
+		    //alert(text.substr(k+10,10));
+		  }
 		}
-
-		for(k=0; k<ayy.length;k++)
+		//find <questionType>
+		for(var k=0;k<responseLength;k++)
 		{
-		  temp = ayy[i].childNode[0].nodeValue;
-		  hid_input(temp);
+		  var test = text.substr(k,14);
+		  //console.log(test);
+			  if(test == "<questionType>")
+			  {
+			    foundQuestionType=true;
+			    fqloc = k + 14;
+			    alert("foundQUESTIONTYPE");
+			    //alert(text.substr(k+13,13));
+			  }
 		}
-
-		for(meme =0; meme<mao.length;meme++)
-		{ 
-		  kek = l[i].childNode[0].nodeValue;
-		  lel = mao[i].childNode[0].nodeValue;
-		  document.getElementById("closedinput").innerHTML += "<input type='button' onclick='samechat(this.value)' value=' + kek +' name='+ mao  +'  >"  ;
-		}
-
 		
+		var flag = false;
+		for(var k =qloc; k<responseLength;k++)
+		{
+		
+		  var test = text.substr(k,1);
+		  console.log(test);
+		 if(test == "<" && flag == false)
+		 {
+		  alert(test); 
+		  flag = true;
+		  endofq = k;  //fine
+		  
+		 }
 
+		} 
+		flag = false;
+		for(var k = fqloc; k<responseLength;k++)
+		{
+		  var test = text.substr(k,1);
+	//	  console.log(test);
+		  if(test == "<" && flag == false)
+		  {
+		    flag = true;
+		    endoffq = k;
+		  }
+		}
+		
+		console.log(text.substr(qloc,endofq - qloc));
+		console.log(text.substr(fqloc, endoffq-fqloc));
+
+		var Question = text.substr(qloc,endofq - qloc);
+		var Questiontype = text.substr(fqloc, endoffq-fqloc);
+		alert(Question);
+		alert(Questiontype);
 
         };
 
