@@ -2,15 +2,17 @@
 	<haad>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script type="text/javascript" src="js/chat.js"></script>
+       <script type="text/javascript" src="js/response_ajax.js"></script>
 	</head>
 	
-	<body>
+	<body> 
+		<form>
 		<div id="comment">
-		<textarea readonly name="chatbox"  type="Comment" rows="30" cols="120"></textarea>
+		<textarea name="chatbox" id="chat"  type="Comment" rows="30" cols="120"></textarea>
 		</div>
 		<div id="text">
-		<textarea type="text" name="textinput" rows="3" cols="39"></textarea> 
-		<button onclick="">Send</button>
+		<textarea type="text" id="txt" name="textinput" rows="3" cols="39"></textarea> 
+		<input type="button" onclick="sendchat(textinput.value)" name="Send">
 		</div>
 		<div id="emojiinput">
 		<!--imagestuff-->
@@ -18,6 +20,7 @@
 		<div id="closedinput">
 		<!--added by js script-->
 		</div>
+		</form>
 	</body>
 </html>
 
