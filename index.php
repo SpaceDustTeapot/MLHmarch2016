@@ -2,7 +2,7 @@
 //Create session id and upload it to db
 //Create and set cookie 
 $connection = mysqli_connect("127.0.0.1","mlh","dankmaymay","MLH");
-$uniqueid = bin2hex(mcrypt_create_iv(22, MCRYPT_DEV_URANDOM));
+$uniqueid = bin2hex(substr(md5(rand()), 0, 7));
 initsession($uniqueid,$connection);
 function initsession($hash,$con)
 {
@@ -15,7 +15,7 @@ function initsession($hash,$con)
 	else
 	{
 	  setcookie("sesh",$hash,time() +2592000);
-	  $mysql = "INSERT INTO users  "
+	  $mysql = "INSERT INTO users  ";
 	}
 
 }
@@ -36,14 +36,19 @@ function initsession($hash,$con)
 		</div>
 		<div id="text">
 		<textarea type="text" id="txt" name="textinput" rows="3" cols="39"></textarea> 
-		<input type="button" onclick="sendchat(textinput.value)" name="Send">
+		<input type="button" onclick="sendchat(textinput.value); alert('BANTER')" name="Send">
 		<br/>
 		</div>
 		<div id="emojiinput">
-		<!--imagestuff-->
+		<img src="Emojis/1.png"></img>
+		<input type="image" src="Emojis/2.png">
+		<input type="image" src="Emojis/3.png">
+		<input type="image" src="Emojis/4.png">
+		<input type="image" src="Emojis/5.png">
+		<input type="image" src="Emojis/6.png">
 		</div>
 		<div id="closedinput">
-		<!--added by js script-->
+		
 		</div>
 		</form>
 	</body>
