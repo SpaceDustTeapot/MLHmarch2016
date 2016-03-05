@@ -15,7 +15,7 @@ function sendchat(str)
 	xmlhttp.onreadystatechange = function()
 	{
 	   	
-		alert("HTML READYSTATE:" + xmlhttp.readyState+" STATUS: "+xmlhttp.status);
+		
 	 	if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
 		{
 		  document.getElementById("chat").innerHTML = xmlhttp.responseText;

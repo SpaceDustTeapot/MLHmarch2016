@@ -1,3 +1,16 @@
+<?php
+//Create session id and upload it to db
+//
+$uniqueid = bin2hex(mcrypt_create_iv(22, MCRYPT_DEV_URANDOM));
+
+function initsession()
+{
+
+
+}
+
+?>
+
 <html>
 	<head>
 	<link rel="stylesheet" href="css/index.css">
