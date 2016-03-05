@@ -87,7 +87,7 @@ function sendchat(str)
 
 	if(hidden = 1)
   	{
-        xmlhttp.open("GET","updatechat.php?chat="+str,true);
+        xmlhttp.open("GET","updatechat.php?answer="+str,true);
         }
 	else if(hidden = 2)
 	{
