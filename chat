@@ -1,0 +1,41 @@
+Hello, What would you like to eat?[open]
+
+Wanna eat now or later? [closed]
+
+Taking out or going out, pet?[closed]
+
+>if out
+Will children be coming? [closed]?
+
+Do you require a wheelchair to get arround? [closed]
+
+Alcohol?[closed]
+
+What's your preference in musical genres,duck?[open]
+
+drive?[closed] 
+
+>back to main
+
+>if now
+
+are you chilling with friends, collegues or business partners? [closed]
+
+
+>else if later
+
+At what time would you roughly like to eat? [open]
+
+Are you chilling with friends, collegues or buisness partners? [closed]
+
+Since you want to eat lator, Would you like to make a resovation? [closed]
+
+>back to main
+
+Distance,arkid[closed]
+
+Amount of cash to spend [closed]
+
+Payment, Cash or credit/debit?[closed]
+
+Is ok,pet? [emoji question]
