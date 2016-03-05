@@ -29,7 +29,7 @@ function initsession($hash,$con)
        <script type="text/javascript" src="js/response_ajax.js"></script>
 	</head>
 	
-	<body> 
+	<body onload="first_load()"> 
 		<form>
 		<div id="comment">
 		<textarea name="chatbox" id="chat"  type="Comment" rows="30" cols="120"></textarea>
@@ -40,7 +40,7 @@ function initsession($hash,$con)
 		<br/>
 		</div>
 		<div id="emojiinput">
-		<img src="Emojis/1.png"></img>
+		<input type="image" src="Emojis/1.png">
 		<input type="image" src="Emojis/2.png">
 		<input type="image" src="Emojis/3.png">
 		<input type="image" src="Emojis/4.png">
