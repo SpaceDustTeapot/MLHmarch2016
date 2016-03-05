@@ -23,7 +23,7 @@ function sendchat(str)
 		
 	};
 
-	xmlhttp.open("GET","http://127.0.0.1/MLGmarch2016/updatechat.php?chat="+str,true);
+	xmlhttp.open("GET","updatechat.php?chat="+str,true);
 	xmlhttp.send();
  }
 

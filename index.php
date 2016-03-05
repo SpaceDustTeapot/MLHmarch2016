@@ -1,11 +1,22 @@
 <?php
 //Create session id and upload it to db
-//
+//Create and set cookie 
+$connection = mysqli_connect("127.0.0.1","mlh","dankmaymay","MLH");
 $uniqueid = bin2hex(mcrypt_create_iv(22, MCRYPT_DEV_URANDOM));
-
-function initsession()
+initsession($uniqueid,$connection);
+function initsession($hash,$con)
 {
+//create cookie
+ 
+	if(isset($_COOKIE['sesh']))
+	{
 
+	}
+	else
+	{
+	  setcookie("sesh",$hash,time() +2592000);
+	  $mysql = "INSERT INTO users  "
+	}
 
 }
 
