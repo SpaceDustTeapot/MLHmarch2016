@@ -23,7 +23,7 @@
     $associativeArray = json_decode($json, true);
     //It is easier to see the structure of this data by referring to the yelp
     //api documentation.
-    $bId = $associateArray['businesses'][0]['id'];
+    $bId = $associativeArray['businesses'][0]['id'];
 
     //Business lookup works similarly to search. A business ID is mandatory.
     $business = new BusinessLookup($bId);
