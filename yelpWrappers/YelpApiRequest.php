@@ -1,4 +1,8 @@
 <?php
+    /*
+     * This class is used by other classes in the wrapper. Where possible, use
+     * those instead
+     */
     class YelpApiRequest
     {
         private $consumerKey = "6NZXeGcgKV4vK2gIABXX5A";
