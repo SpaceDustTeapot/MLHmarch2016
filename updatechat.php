@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 echo "<questionType>closed</questionType>";
 
 echo "<question>dsda</question>";
@@ -15,7 +14,7 @@ echo "<value>7</value>";
 
 
 
-=======
+
 	session_start();
 	header('Access-Control-Allow-Origin: *'); 
 	//header("Content-type: text/xml");
@@ -39,7 +38,6 @@ echo "<value>7</value>";
 	
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
->>>>>>> a358ad49894ee9cffee0dfa84d241c585bb42a07
 
 	// Check connection
 	if ($conn->connect_error) {
