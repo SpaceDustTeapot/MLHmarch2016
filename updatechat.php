@@ -4,21 +4,20 @@
 	//header("Content-type: text/xml");
 	
 	//$_SESSION['keywords'];
-	//$_SESSION['currentQ'];
-	
-	if(!isset($_SESSION['currentQ'])){
-		$_SESSION['currentQ'] = 0;
-	}
+	//$_SESSION['currentQ']; - The question to process the answer for
 	
 	$nextQ = 1;
-	if(isset($_GET['answer'])){
-		//$nextQ = $_GET['answer']
-	}
+	//if(isset($_GET['answer'])){
+	//	$nextQ = $_GET['answer'];
+	//}
+	
+	//if(!isset($_SESSION['currentQ'])){
+	//	$_SESSION['currentQ'] = 1;
+	//}
 	
 	if(!isset($_SESSION['searchKeys'])){
 		$_SESSION['searchKeys'] = "";
 	}
-	
 	
 	////////////////	Set up SQL stuff	///////////////////
 	
@@ -41,7 +40,7 @@
 	////////////////	Process user answer		//////////////////////
 	
 	if(isset($_SESSION['currentQ'])){
-		$sql = "SELECT * FROM questionbank WHERE primaryKey = '" . $_SESSION['currentQ'] . "'";
+		$sql = "SELECT * FROM questionbank WHERE primaryKey = " . $_SESSION['currentQ'];
 		$result = $conn->query($sql);
 		
 		if ($result->num_rows > 0) {
@@ -64,11 +63,12 @@
 					}
 				}
 				if(isset($_SESSION['lastXmlResponse'])){
+					echo $_SESSION['lastXmlResponse'];
 					$repeatQuestion = true;
 				}
 			}
 		} else {
-			echo "<br>Error";
+			$_SESSION['currentQ'];
 		}
 	}
 	
@@ -76,7 +76,7 @@
 	if($repeatQuestion == false){
 		/////////////////	Start getting question process	/////////////////////
 		
-		$sql = "SELECT * FROM questionbank WHERE primaryKey = '" . $nextQ . "'";
+		$sql = "SELECT * FROM questionbank WHERE primaryKey = " . $nextQ;
 		$result = $conn->query($sql);
 		
 		$xmlResponse = "";
@@ -101,9 +101,9 @@
 				$xmlResponse .= "&#13</banter>";
 			}
 		} else {
-			$xmlResponse = "&#13;0 results";
+			$xmlResponse = "Invalid question ID";
 		}
-		echo $xmlResponse;
+		echo $xmlResponse . " - " . $_SESSION['currentQ'] . " - " . $nextQ;
 		$_SESSION['lastXmlResponse'] = $xmlResponse;
 		$_SESSION['currentQ'] = $nextQ;
 	}
