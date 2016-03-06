@@ -1,20 +1,4 @@
 <?php
-echo "<questionType>closed</questionType>";
-
-echo "<question>dsda</question>";
-
-echo "<answer>I want chinese</answer>";
-echo "<value>3</value>";
-
-echo "<answer>I want curry</answer>";
-echo "<value>4</value>";
-
-echo "<answer>I want pizza</answer>";
-echo "<value>7</value>";
-
-
-
-
 	session_start();
 	header('Access-Control-Allow-Origin: *'); 
 	//header("Content-type: text/xml");
@@ -22,10 +6,17 @@ echo "<value>7</value>";
 	//$_SESSION['keywords'];
 	//$_SESSION['currentQ'];
 	
-	//CHANGE THIS
+	if(!isset($_SESSION['currentQ'])){
+		$_SESSION['currentQ'] = 0;
+	}
+	
 	$nextQ = 1;
 	if(isset($_GET['answer'])){
-		echo $_GET['answer'];
+		//$nextQ = $_GET['answer']
+	}
+	
+	if(!isset($_SESSION['searchKeys'])){
+		$_SESSION['searchKeys'] = "";
 	}
 	
 	
@@ -50,7 +41,6 @@ echo "<value>7</value>";
 	////////////////	Process user answer		//////////////////////
 	
 	if(isset($_SESSION['currentQ'])){
-		echo "Current question is " . $_SESSION['currentQ'];
 		$sql = "SELECT * FROM questionbank WHERE primaryKey = '" . $_SESSION['currentQ'] . "'";
 		$result = $conn->query($sql);
 		
@@ -58,36 +48,34 @@ echo "<value>7</value>";
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
 				if(isset($_GET['answer'])){
-					echo "get answer is set";
 					for($i = 1; $i <= 4; $i++){
-						echo "the for loop runs";
 						$keyword = $row['keyword' . $i];
 						if($keyword != ""){
-							echo "the keyword isn't empty";
-							if(stripos($_GET['answer'], $keyword) === true){
-								echo "The keyword has been found";
+							if(stripos($_GET['answer'], $keyword) !== false){
+								$_SESSION['searchKeys'] .= $keyword . " ";
 								$nextQ = $row['nextQFrom' . $i];
 								break 2;
 							}
+						} else if($i == 1){
+								$_SESSION['searchKeys'] .= $_GET['answer'] . " ";
+								$nextQ = $row['nextQFrom' . $i];
+								break 2;
 						}
 					}
 				}
 				if(isset($_SESSION['lastXmlResponse'])){
-					echo $_SESSION['lastXmlResponse'];
 					$repeatQuestion = true;
 				}
 			}
 		} else {
-			echo "&#13;0 results";
+			echo "<br>Error";
 		}
 	}
-	
-	echo "I get to checking repeatQuestion";
 	
 	//Don't do this if the user gave a bad answer last time
 	if($repeatQuestion == false){
 		/////////////////	Start getting question process	/////////////////////
-		echo "repeatQuestion is false";
+		
 		$sql = "SELECT * FROM questionbank WHERE primaryKey = '" . $nextQ . "'";
 		$result = $conn->query($sql);
 		
@@ -115,13 +103,12 @@ echo "<value>7</value>";
 		} else {
 			$xmlResponse = "&#13;0 results";
 		}
-		
 		echo $xmlResponse;
 		$_SESSION['lastXmlResponse'] = $xmlResponse;
 		$_SESSION['currentQ'] = $nextQ;
 	}
 	
-	
+	echo "<br>Search keys: " . $_SESSION['searchKeys'];
 	$conn->close();
 	
 ?>
