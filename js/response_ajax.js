@@ -99,5 +99,3 @@ function sendChat(str){
 		xmlhttp.send();
 	}
 }
-
-																
