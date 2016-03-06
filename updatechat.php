@@ -25,8 +25,7 @@
 	$servername = "localhost";
 	$username = "mlh";
 	$password = "dankmaymay";
-	$dbname = "mlh";
-
+	$dbname = "MLH";
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -104,7 +103,7 @@
 		} else {
 			$xmlResponse = "Invalid question ID";
 		}
-		echo $xmlResponse . " - " . $_SESSION['currentQ'] . " - " . $nextQ;
+		echo $xmlResponse;
 		$_SESSION['lastXmlResponse'] = $xmlResponse;
 		$_SESSION['currentQ'] = $nextQ;
 	}
