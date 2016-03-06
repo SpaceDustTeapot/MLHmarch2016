@@ -35,16 +35,16 @@ function initsession($hash,$con){
 					</div>
 					<div id="text">
 						<textarea type="text" id="txt" name="textinput" onkeypress="checkSubmit(event);"></textarea>
-						<input type="button" onclick="sendChat(document.getElementById('txt').value);" name="Send" value="submit" />
+						<input type="button" onclick="sendChat(textinput.value);" name="Send" value="submit" />
 						<br />
 					</div>
 					<div id="emojiinput">
-						<input type="image" src="Emojis/1.png" />
-						<input type="image" src="Emojis/2.png" />
-						<input type="image" src="Emojis/3.png" />
-						<input type="image" src="Emojis/4.png" />
-						<input type="image" src="Emojis/5.png" />
-						<input type="image" src="Emojis/6.png" />
+						<input type="image" src="Emojis/1.png" onclick="sendChat(this.value)" value="1" />
+						<input type="image" src="Emojis/2.png" onclick="sendChat(this.value)" value="2" />
+						<input type="image" src="Emojis/3.png" onclick="sendChat(this.value)" value="3" />
+						<input type="image" src="Emojis/4.png" onclick="sendChat(this.value)" value="4" />
+						<input type="image" src="Emojis/5.png" onclick="sendChat(this.value)" value="5" />
+						<input type="image" src="Emojis/6.png" onclick="sendChat(this.value)" value="6" />
 					</div>
 					<div id="closedinput">
 
