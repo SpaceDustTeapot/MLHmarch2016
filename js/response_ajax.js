@@ -6,11 +6,7 @@ function checkSubmit(e)
 }
 
 function sendChat(str){
-	if(str.length == 0){
-		alert("strlen = zero");
-		document.getElementById("txt").innerHTML = "";
-		return;
-	} else{
+	if(str.length != 0){
 		var xmlhttp = new XMLHttpRequest();
 		
         xmlhttp.onreadystatechange = function(){
