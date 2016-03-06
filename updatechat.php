@@ -103,7 +103,7 @@
 		} else {
 			$xmlResponse = "Invalid question ID";
 		}
-		echo $xmlResponse . " - " . $_SESSION['currentQ'] . " - " . $nextQ;
+		echo $xmlResponse;
 		$_SESSION['lastXmlResponse'] = $xmlResponse;
 		$_SESSION['currentQ'] = $nextQ;
 	}
